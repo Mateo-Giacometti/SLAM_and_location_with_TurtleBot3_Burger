@@ -1,0 +1,45 @@
+[0.603s] Invoking command in '/home/mateo/Desktop/tp_final_robotica/src/my_py_amcl': CONDA_PROMPT_MODIFIER=(rosenv) PYTHONPATH=/home/mateo/Desktop/tp_final_robotica/build/my_py_amcl/prefix_override:/home/mateo/miniconda3/envs/rosenv/lib/python3.11/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/lib/python3.11/site-packages:${PYTHONPATH} /home/mateo/miniconda3/envs/rosenv/bin/python3.11 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_py_amcl build --build-base /home/mateo/Desktop/tp_final_robotica/build/my_py_amcl/build install --record /home/mateo/Desktop/tp_final_robotica/build/my_py_amcl/install.log --single-version-externally-managed install_data
+[0.744s] /home/mateo/miniconda3/envs/rosenv/lib/python3.11/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[0.744s]   warnings.warn(msg)
+[0.805s] running egg_info
+[0.814s] creating ../../build/my_py_amcl/my_py_amcl.egg-info
+[0.814s] writing ../../build/my_py_amcl/my_py_amcl.egg-info/PKG-INFO
+[0.814s] writing dependency_links to ../../build/my_py_amcl/my_py_amcl.egg-info/dependency_links.txt
+[0.815s] writing entry points to ../../build/my_py_amcl/my_py_amcl.egg-info/entry_points.txt
+[0.815s] writing requirements to ../../build/my_py_amcl/my_py_amcl.egg-info/requires.txt
+[0.815s] writing top-level names to ../../build/my_py_amcl/my_py_amcl.egg-info/top_level.txt
+[0.815s] writing manifest file '../../build/my_py_amcl/my_py_amcl.egg-info/SOURCES.txt'
+[0.836s] reading manifest file '../../build/my_py_amcl/my_py_amcl.egg-info/SOURCES.txt'
+[0.836s] adding license file 'LICENSE'
+[0.837s] writing manifest file '../../build/my_py_amcl/my_py_amcl.egg-info/SOURCES.txt'
+[0.837s] running build
+[0.837s] running build_py
+[0.837s] creating /home/mateo/Desktop/tp_final_robotica/build/my_py_amcl/build/lib/my_py_amcl
+[0.837s] copying my_py_amcl/__init__.py -> /home/mateo/Desktop/tp_final_robotica/build/my_py_amcl/build/lib/my_py_amcl
+[0.837s] copying my_py_amcl/amcl_node.py -> /home/mateo/Desktop/tp_final_robotica/build/my_py_amcl/build/lib/my_py_amcl
+[0.837s] running install
+[0.842s] running install_lib
+[0.853s] creating /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/lib/python3.11/site-packages/my_py_amcl
+[0.853s] copying /home/mateo/Desktop/tp_final_robotica/build/my_py_amcl/build/lib/my_py_amcl/__init__.py -> /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/lib/python3.11/site-packages/my_py_amcl
+[0.853s] copying /home/mateo/Desktop/tp_final_robotica/build/my_py_amcl/build/lib/my_py_amcl/amcl_node.py -> /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/lib/python3.11/site-packages/my_py_amcl
+[0.854s] byte-compiling /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/lib/python3.11/site-packages/my_py_amcl/__init__.py to __init__.cpython-311.pyc
+[0.854s] byte-compiling /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/lib/python3.11/site-packages/my_py_amcl/amcl_node.py to amcl_node.cpython-311.pyc
+[0.857s] running install_data
+[0.857s] creating /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/share/ament_index/resource_index/packages
+[0.857s] copying resource/my_py_amcl -> /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/share/ament_index/resource_index/packages
+[0.858s] copying package.xml -> /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/share/my_py_amcl
+[0.858s] creating /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/share/my_py_amcl/launch
+[0.858s] copying launch/amcl_maze.launch.py -> /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/share/my_py_amcl/launch
+[0.858s] creating /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/share/my_py_amcl/rviz
+[0.858s] copying rviz/amcl.rviz -> /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/share/my_py_amcl/rviz
+[0.858s] creating /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/share/my_py_amcl/maps
+[0.858s] copying maps/map.yaml -> /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/share/my_py_amcl/maps
+[0.858s] copying maps/map.pgm -> /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/share/my_py_amcl/maps
+[0.859s] creating /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/share/my_py_amcl/config
+[0.859s] copying config/costmap.yaml -> /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/share/my_py_amcl/config
+[0.859s] running install_egg_info
+[0.873s] Copying ../../build/my_py_amcl/my_py_amcl.egg-info to /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/lib/python3.11/site-packages/my_py_amcl-0.0.0-py3.11.egg-info
+[0.874s] running install_scripts
+[0.903s] Installing amcl_node script to /home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/lib/my_py_amcl
+[0.904s] writing list of installed files to '/home/mateo/Desktop/tp_final_robotica/build/my_py_amcl/install.log'
+[0.929s] Invoked command in '/home/mateo/Desktop/tp_final_robotica/src/my_py_amcl' returned '0': CONDA_PROMPT_MODIFIER=(rosenv) PYTHONPATH=/home/mateo/Desktop/tp_final_robotica/build/my_py_amcl/prefix_override:/home/mateo/miniconda3/envs/rosenv/lib/python3.11/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/mateo/Desktop/tp_final_robotica/install/my_py_amcl/lib/python3.11/site-packages:${PYTHONPATH} /home/mateo/miniconda3/envs/rosenv/bin/python3.11 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/my_py_amcl build --build-base /home/mateo/Desktop/tp_final_robotica/build/my_py_amcl/build install --record /home/mateo/Desktop/tp_final_robotica/build/my_py_amcl/install.log --single-version-externally-managed install_data

@@ -1,3 +1,5 @@
+=== Parte A ===
+
 # En una termina dentro de rosenv y la carpeta tp_final_robotica
 
 colcon build --packages-select turtlebot3_slam_mapper
@@ -18,3 +20,9 @@ ros2 run turtlebot3_teleop teleop_keyboard
 # Para guardar el mapa
 
 ros2 run nav2_map_server map_saver_cli -f ~/map
+
+=== Parte B ===
+
+# En una termina dentro de rosenv y la carpeta tp_final_robotica
+
+colcon build --packages-select my_py_amcl

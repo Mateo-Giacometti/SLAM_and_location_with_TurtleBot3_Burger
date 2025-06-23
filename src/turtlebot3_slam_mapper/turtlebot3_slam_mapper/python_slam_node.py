@@ -15,17 +15,24 @@ from rclpy.qos import (
 )
 
 class Particle:
-    def __init__(self, x, y, theta, weight, map_shape):
+    def __init__(self, x: float, y: float, theta: float, weight: float, map_shape: tuple):
         self.x = x
         self.y = y
         self.theta = theta
         self.weight = weight
         self.log_odds_map = np.zeros(map_shape, dtype=np.float32)
 
-    def pose(self):
+    def pose(self) -> np.ndarray:
+        """
+        Return the pose of the particle.
+
+        Returns
+        -------
+        np.ndarray
+            A numpy array containing the x, y, and theta of the particle.
+        """
         return np.array([self.x, self.y, self.theta])
-
-
+    
 class PythonSlamNode(Node):
     def __init__(self):
         super().__init__("python_slam_node")
@@ -37,20 +44,14 @@ class PythonSlamNode(Node):
         self.declare_parameter("odom_frame", "odom")
         self.declare_parameter("base_frame", "base_footprint")
 
-        self.declare_parameter("map_resolution", 0.05)  # 5cm per cell
-        self.declare_parameter("map_width_meters", 20.0)  # 20 meters width
-        self.declare_parameter("map_height_meters", 20.0)  # 20 meters height
+        self.declare_parameter("map_resolution", 0.05)  # meters per cell
+        self.declare_parameter("map_width_meters", 20.0)  # meters width
+        self.declare_parameter("map_height_meters", 20.0)  # meters height
         self.declare_parameter("num_particles", 100)  # Number of particles
 
-        self.resolution = (
-            self.get_parameter("map_resolution").get_parameter_value().double_value
-        )
-        self.map_width_m = (
-            self.get_parameter("map_width_meters").get_parameter_value().double_value
-        )
-        self.map_height_m = (
-            self.get_parameter("map_height_meters").get_parameter_value().double_value
-        )
+        self.resolution = (self.get_parameter("map_resolution").get_parameter_value().double_value)
+        self.map_width_m = (self.get_parameter("map_width_meters").get_parameter_value().double_value)
+        self.map_height_m = (self.get_parameter("map_height_meters").get_parameter_value().double_value)
         self.map_width_cells = int(self.map_width_m / self.resolution)
         self.map_height_cells = int(self.map_height_m / self.resolution)
         self.map_origin_x = -self.map_width_m / 2.0
@@ -59,37 +60,20 @@ class PythonSlamNode(Node):
         self.declare_parameter("log_odds_occupied", 0.9)  # Increment for occupied cells
         self.declare_parameter("log_odds_free", -0.4)  # Decrement for free cells
 
-        self.log_odds_occupied = (
-            self.get_parameter("log_odds_occupied").get_parameter_value().double_value
-        )
-        self.log_odds_free = (
-            self.get_parameter("log_odds_free").get_parameter_value().double_value
-        )
+        self.log_odds_occupied = (self.get_parameter("log_odds_occupied").get_parameter_value().double_value)
+        self.log_odds_free = (self.get_parameter("log_odds_free").get_parameter_value().double_value)
 
         self.log_odds_max = 5.0
         self.log_odds_min = -5.0
 
         # Particle filter
-        self.num_particles = (
-            self.get_parameter("num_particles").get_parameter_value().integer_value
-        )
-        self.particles = [
-            Particle(
-                0.0,
-                0.0,
-                0.0,
-                1.0 / self.num_particles,
-                (self.map_height_cells, self.map_width_cells),
-            )
-            for _ in range(self.num_particles)
-        ]
+        self.num_particles = (self.get_parameter("num_particles").get_parameter_value().integer_value)
+        self.particles = [Particle(0.0, 0.0, 0.0, 1.0/self.num_particles, (self.map_height_cells, self.map_width_cells)) for _ in range(self.num_particles)]
         self.last_odom = None
 
         # Variables for current state
         self.current_map_pose = np.array([0.0, 0.0, 0.0])  # [x, y, theta] in map frame
-        self.current_odom_pose = np.array(
-            [0.0, 0.0, 0.0]
-        )  # [x, y, theta] in odom frame
+        self.current_odom_pose = np.array([0.0, 0.0, 0.0])  # [x, y, theta] in odom frame
 
         # ROS2 publishers/subscribers
         map_qos_profile = QoSProfile(
@@ -98,28 +82,44 @@ class PythonSlamNode(Node):
             depth=1,
             durability=QoSDurabilityPolicy.TRANSIENT_LOCAL,
         )
-        self.map_publisher = self.create_publisher(
-            OccupancyGrid, "/map", map_qos_profile
-        )
+
+        self.map_publisher = self.create_publisher(OccupancyGrid, "/map", map_qos_profile)
         self.tf_broadcaster = TransformBroadcaster(self)
         self.odom_subscriber = self.create_subscription(
             Odometry,
             self.get_parameter("odom_topic").get_parameter_value().string_value,
             self.odom_callback,
-            10,
-        )
+            10)
+        
         self.scan_subscriber = self.create_subscription(
             LaserScan,
             self.get_parameter("scan_topic").get_parameter_value().string_value,
             self.scan_callback,
-            rclpy.qos.qos_profile_sensor_data,
-        )
+            rclpy.qos.qos_profile_sensor_data)
 
         self.get_logger().info("Python SLAM node with particle filter initialized.")
         self.map_publish_timer = self.create_timer(1.0, self.publish_map)
 
-    def quaternion_to_euler(self, x, y, z, w):
-        """Convert quaternion to Euler angle (yaw) around z-axis."""
+    def quaternion_to_euler(self, x: float, y: float, z: float, w: float) -> float:
+        """
+        Convert quaternion to Euler angle (yaw) around z-axis.
+        
+        Parameters
+        ----------
+        x : float
+            The x component of the quaternion.
+        y : float
+            The y component of the quaternion.
+        z : float
+            The z component of the quaternion.
+        w : float
+            The w component of the quaternion.
+
+        Returns
+        -------
+        yaw : float
+            The yaw angle in radians.
+        """
         # Roll (x-axis rotation)
         sinr_cosp = 2 * (w * x + y * z)
         cosr_cosp = 1 - 2 * (x * x + y * y)
@@ -136,11 +136,36 @@ class PythonSlamNode(Node):
 
         return yaw
 
-    def odom_callback(self, msg: Odometry):
+    def odom_callback(self, msg: Odometry) -> None:
+        """
+        Callback for odometry messages.
+        
+        Parameters
+        ----------
+        msg : Odometry
+            The odometry message containing the robot's pose.
+
+        Returns
+        -------
+        None
+        """
         # Store odometry for motion update
         self.last_odom = msg
 
-    def scan_callback(self, msg: LaserScan):
+    def scan_callback(self, msg: LaserScan) -> None:
+        """ 
+        Callback for laser scan messages.
+
+        Parameters
+        ----------
+        msg : LaserScan
+            The laser scan message containing range data.
+
+        Returns
+        -------
+        None
+        """
+        # If no odometry is available, skip processing
         if self.last_odom is None:
             return
 
@@ -149,9 +174,7 @@ class PythonSlamNode(Node):
         odom_x = odom.pose.pose.position.x
         odom_y = odom.pose.pose.position.y
         odom_quat = odom.pose.pose.orientation
-        odom_theta = self.quaternion_to_euler(
-            odom_quat.x, odom_quat.y, odom_quat.z, odom_quat.w
-        )
+        odom_theta = self.quaternion_to_euler(odom_quat.x, odom_quat.y, odom_quat.z, odom_quat.w)
 
         odom_pose = np.array([odom_x, odom_y, odom_theta])
 

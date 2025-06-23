@@ -1,0 +1,4 @@
+[0.000000] (-) TimerEvent: {}
+[0.000587] (-) JobUnselected: {'identifier': 'my_py_amcl'}
+[0.000716] (-) JobUnselected: {'identifier': 'turtlebot3_slam_mapper'}
+[0.001723] (-) EventReactorShutdown: {}
