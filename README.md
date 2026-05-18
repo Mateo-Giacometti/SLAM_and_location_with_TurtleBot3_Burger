@@ -1,7 +1,7 @@
 <table>
   <tr>
     <td width="36%" align="center" valign="middle">
-      <img src="https://www.robotis.us/wp-content/uploads/2020/01/TurtleBot3_logo-500x500.png" alt="TurtleBot3 logo" width="280" />
+     <img src="image.png" alt="University of San Andres logo" width="320" />
     </td>
     <td width="64%" valign="top">
       <h2>TP Final: Robótica Autónoma — SLAM y Localización</h2>
