@@ -4,35 +4,35 @@
      <img src="image.png" alt="University of San Andres logo" width="320" />
     </td>
     <td width="64%" valign="top">
-      <h2>TP Final: Robótica Autónoma — SLAM y Localización</h2>
-      <p><strong>Curso:</strong> Principios de la Robótica Autónoma</p>
-      <p><strong>Institución:</strong> Universidad de San Andrés, Argentina</p>
-      <p><strong>Programa:</strong> Ingeniería en Inteligencia Artificial</p>
-      <p><strong>Año Académico:</strong> 4° año</p>
+      <h2>Final Project: Autonomous Robotics - SLAM and Localization</h2>
+      <p><strong>Course:</strong> Principles of Autonomous Robotics</p>
+      <p><strong>Institution:</strong> University of San Andres, Argentina</p>
+      <p><strong>Program:</strong> Artificial Intelligence Engineering</p>
+      <p><strong>Academic Year:</strong> 4th year</p>
     </td>
   </tr>
 </table>
 
 ---
 
-## Descripción general
+## Overview
 
-Proyecto final de robótica autónoma que implementa dos componentes clave en navegación robótica:
+Final autonomous robotics project that implements two key components in robotic navigation:
 
-- **Parte A — SLAM (Simultaneous Localization and Mapping):** mapeo y localización simultánea de un TurtleBot3 en un entorno laberinto usando `slam_toolbox`, teleoperación y visualización en RViz2.
-- **Parte B — AMCL (Adaptive Monte Carlo Localization):** localización probabilística con múltiples hipótesis de ubicación, filtrado por partículas y corrección mediante sensores (láser, odom).
+- **Part A - SLAM (Simultaneous Localization and Mapping):** simultaneous mapping and localization of a TurtleBot3 in a maze environment using `slam_toolbox`, teleoperation, and RViz2 visualization.
+- **Part B - AMCL (Adaptive Monte Carlo Localization):** probabilistic localization with multiple pose hypotheses, particle filtering, and sensor correction (laser, odom).
 
-Ambas partes utilizan **ROS2** como middleware de comunicación, **Gazebo** para simulación y **RViz2** para visualización de datos en tiempo real.
+Both parts use **ROS2** as the communication middleware, **Gazebo** for simulation, and **RViz2** for real-time data visualization.
 
-## Requisitos
+## Requirements
 
-### Entorno ROS2
-- **ROS2 Humble** o superior
-- **Colcon** (herramienta de build para ROS2)
-- **Gazebo** (simulador)
-- **RViz2** (herramienta de visualización)
+### ROS2 Environment
+- **ROS2 Humble** or newer
+- **Colcon** (ROS2 build tool)
+- **Gazebo** (simulator)
+- **RViz2** (visualization tool)
 
-### Dependencias de Python
+### Python Dependencies
 ```
 rclpy
 launch_ros
@@ -47,69 +47,69 @@ numpy
 scipy
 ```
 
-### Hardware / Simulación
-- **TurtleBot3 Burger** (en simulación con Gazebo)
+### Hardware / Simulation
+- **TurtleBot3 Burger** (in simulation with Gazebo)
 
-## Estructura del proyecto
+## Project Structure
 
 ```
 tp_final_robotica/
-├── README.md                                      # Este archivo
-├── LICENSE                                        # Licencia Apache 2.0
-├── Instrucciones.txt                              # Instrucciones de ejecución
-├── python_slam_node_aux.py                        # Nodo auxiliar Python
+├── README.md                                      # This file
+├── LICENSE                                        # Apache 2.0 license
+├── Instrucciones.txt                              # Execution instructions
+├── python_slam_node_aux.py                        # Auxiliary Python node
 ├── src/
-│   ├── turtlebot3_slam_mapper/                   # Paquete ROS2 — Parte A (SLAM)
-│   │   ├── turtlebot3_slam_mapper/               # Módulo Python
+│   ├── turtlebot3_slam_mapper/                    # ROS2 package - Part A (SLAM)
+│   │   ├── turtlebot3_slam_mapper/                # Python module
 │   │   ├── launch/
-│   │   │   └── python_slam_maze.launch.py        # Launch file (SLAM + teleop + RViz)
-│   │   ├── rviz/                                 # Configuraciones de RViz2
-│   │   ├── config/                               # Parámetros y configuración
-│   │   ├── package.xml                           # Definición del paquete
-│   │   └── setup.py, setup.cfg                   # Configuración de instalación
+│   │   │   └── python_slam_maze.launch.py         # Launch file (SLAM + teleop + RViz)
+│   │   ├── rviz/                                  # RViz2 configurations
+│   │   ├── config/                                # Parameters and configuration
+│   │   ├── package.xml                            # Package definition
+│   │   └── setup.py, setup.cfg                    # Installation configuration
 │   │
-│   └── my_py_amcl/                               # Paquete ROS2 — Parte B (AMCL)
-│       ├── my_py_amcl/                           # Módulo Python
-│       ├── launch/                               # Launch files
-│       ├── rviz/                                 # Configuraciones de RViz2
-│       ├── config/                               # Parámetros de localización
-│       ├── param/                                # Parámetros de nodos
-│       ├── maps/                                 # Mapas pre-generados
-│       ├── package.xml                           # Definición del paquete
-│       └── setup.py, setup.cfg                   # Configuración de instalación
+│   └── my_py_amcl/                                # ROS2 package - Part B (AMCL)
+│       ├── my_py_amcl/                            # Python module
+│       ├── launch/                                # Launch files
+│       ├── rviz/                                  # RViz2 configurations
+│       ├── config/                                # Localization parameters
+│       ├── param/                                 # Node parameters
+│       ├── maps/                                  # Pre-generated maps
+│       ├── package.xml                            # Package definition
+│       └── setup.py, setup.cfg                    # Installation configuration
 │
-├── report/                                        # Informe académico
-│   └── Informe - TP Final - ...pdf               # Reporte completo del proyecto
-├── instructions/                                  # Documentación adicional
-├── build/, install/, log/                        # Directorios generados por colcon
-└── .git/                                          # Repositorio Git
+├── report/                                        # Academic report
+│   └── Informe - TP Final - ...pdf                # Full project report
+├── instructions/                                  # Additional documentation
+├── build/, install/, log/                         # Directories generated by colcon
+└── .git/                                          # Git repository
 ```
 
-## Instalación y configuración
+## Installation and Setup
 
-### 1. Clonar el repositorio
+### 1. Clone the repository
 ```bash
 cd ~/colcon_ws/src
 git clone <repository-url> tp_final_robotica
 cd ~/colcon_ws
 ```
 
-### 2. Instalar dependencias
+### 2. Install dependencies
 ```bash
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
-### 3. Compilar el workspace
+### 3. Build the workspace
 ```bash
 colcon build
 source install/setup.bash
 ```
 
-## Ejecución
+## Usage
 
-### Parte A — SLAM (Mapeo y localización)
+### Part A - SLAM (Mapping and Localization)
 
-#### Terminal 1: Lanzar simulación SLAM
+#### Terminal 1: Launch SLAM simulation
 ```bash
 cd ~/colcon_ws
 source install/setup.bash
@@ -120,38 +120,38 @@ export TURTLEBOT3_MODEL=burger
 ros2 launch turtlebot3_slam_mapper python_slam_maze.launch.py
 ```
 
-Esto abre:
-- **Gazebo** con un TurtleBot3 Burger en un laberinto
-- **RViz2** con visualización del mapa en construcción y nubes de puntos lidar
-- Nodo **SLAM Toolbox** compilando el mapa en tiempo real
+This opens:
+- **Gazebo** with a TurtleBot3 Burger in a maze
+- **RViz2** with the map under construction and lidar point clouds
+- **SLAM Toolbox** node building the map in real time
 
-#### Terminal 2: Teleoperación
+#### Terminal 2: Teleoperation
 ```bash
 export TURTLEBOT3_MODEL=burger
 ros2 run turtlebot3_teleop teleop_keyboard
 ```
 
-**Controles:**
-- `W / X`: acelerar/desacelerar hacia adelante
-- `A / D`: girar izquierda/derecha
-- `S`: detener
-- `Space`: reset de velocidades
+**Controls:**
+- `W / X`: accelerate/decelerate forward motion
+- `A / D`: turn left/right
+- `S`: stop
+- `Space`: reset velocities
 
-#### Guardar el mapa
-Una vez que el robot ha explorado el laberinto, guardar el mapa:
+#### Save the map
+Once the robot has explored the maze, save the map:
 ```bash
 ros2 run nav2_map_server map_saver_cli -f ~/map
 ```
 
-Esto genera:
-- `~/map.pgm` (imagen del mapa)
-- `~/map.yaml` (metadatos del mapa)
+This generates:
+- `~/map.pgm` (map image)
+- `~/map.yaml` (map metadata)
 
 ---
 
-### Parte B — AMCL (Localización con partículas)
+### Part B - AMCL (Particle Localization)
 
-#### Terminal 1: Compilar y lanzar AMCL
+#### Terminal 1: Build and launch AMCL
 ```bash
 cd ~/colcon_ws
 source install/setup.bash
@@ -162,75 +162,75 @@ export TURTLEBOT3_MODEL=burger
 ros2 launch my_py_amcl <launch_file>
 ```
 
-Típicamente:
+Typically:
 ```bash
 ros2 launch my_py_amcl amcl_gazebo.launch.py
 ```
 
-#### Terminal 2: Teleoperación
+#### Terminal 2: Teleoperation
 ```bash
 export TURTLEBOT3_MODEL=burger
 ros2 run turtlebot3_teleop teleop_keyboard
 ```
 
-En RViz2 se verá:
-- La posición real del robot en Gazebo
-- La nube de partículas (hipótesis de localización)
-- Convergencia de partículas hacia la posición correcta
+In RViz2 you will see:
+- The robot's real position in Gazebo
+- The particle cloud (localization hypotheses)
+- Particles converging toward the correct position
 
 ---
 
-## Conceptos principales
+## Key Concepts
 
 ### SLAM (Simultaneous Localization and Mapping)
-- Construcción incremental de un mapa mientras se estima la localización del robot.
-- En este proyecto: **SLAM Toolbox** usa datos del lidar (rango y ángulo) para crear un mapa 2D.
-- La posición del robot se estima continuamente mientras se agrega nueva información topológica.
+- Incremental construction of a map while estimating the robot's localization.
+- In this project, **SLAM Toolbox** uses lidar data (range and angle) to create a 2D map.
+- The robot's position is continuously estimated as new topological information is added.
 
 ### AMCL (Adaptive Monte Carlo Localization)
-- Localización probabilística basada en filtrado de partículas.
-- Requiere un mapa **a priori** (generado en Parte A).
-- Estima la pose del robot comparando lecturas de lidar actuales con el mapa conocido.
-- Adapta el número de partículas dinámicamente según la confianza.
+- Probabilistic localization based on particle filtering.
+- Requires an **a priori** map (generated in Part A).
+- Estimates the robot pose by comparing current lidar readings with the known map.
+- Dynamically adapts the number of particles according to confidence.
 
-### Componentes ROS2 usados
-- **rclpy:** cliente Python para ROS2
-- **tf2_ros:** transformaciones espaciales (frame graph)
-- **sensor_msgs:** mensajes de sensores (LaserScan, PointCloud)
-- **nav_msgs:** mensajes de navegación (OccupancyGrid, Path)
-- **geometry_msgs:** mensajes de geometría (Twist, Pose, PoseArray)
-- **visualization_msgs:** marcadores para visualización en RViz2
+### ROS2 Components Used
+- **rclpy:** Python client library for ROS2
+- **tf2_ros:** spatial transformations (frame graph)
+- **sensor_msgs:** sensor messages (LaserScan, PointCloud)
+- **nav_msgs:** navigation messages (OccupancyGrid, Path)
+- **geometry_msgs:** geometry messages (Twist, Pose, PoseArray)
+- **visualization_msgs:** markers for visualization in RViz2
 
 ---
 
-## Tecnologías y herramientas
+## Technologies and Tools
 
-| Categoría | Herramienta / Librería |
-|-----------|------------------------|
-| **Middleware Robótico** | ROS2 Humble, rclpy |
-| **Algoritmos** | SLAM Toolbox, AMCL (Monte Carlo Localization) |
-| **Simulación** | Gazebo, turtlebot3_gazebo |
-| **Visualización** | RViz2 |
-| **Lenguaje** | Python 3 |
-| **Cálculo Científico** | NumPy, SciPy |
+| Category | Tool / Library |
+|-----------|----------------|
+| **Robotic Middleware** | ROS2 Humble, rclpy |
+| **Algorithms** | SLAM Toolbox, AMCL (Monte Carlo Localization) |
+| **Simulation** | Gazebo, turtlebot3_gazebo |
+| **Visualization** | RViz2 |
+| **Language** | Python 3 |
+| **Scientific Computing** | NumPy, SciPy |
 | **Build System** | Colcon, Ament (Python) |
 | **Control** | teleop_twist_keyboard |
-| **Navegación** | nav2_common, nav2_map_server |
-| **Transformaciones** | tf2_ros, tf_transformations |
+| **Navigation** | nav2_common, nav2_map_server |
+| **Transformations** | tf2_ros, tf_transformations |
 
 ---
 
-## Salida esperada
+## Expected Output
 
-### Parte A — SLAM
-- **Gazebo:** simulación del TurtleBot3 en un entorno laberinto
-- **RViz2:** mapa 2D construido en tiempo real, lecturas del lidar, trayectoria del robot
-- **Consola:** logs de SLAM Toolbox mostrando número de scans, optimizaciones de grafo
+### Part A - SLAM
+- **Gazebo:** TurtleBot3 simulation in a maze environment
+- **RViz2:** 2D map built in real time, lidar readings, robot trajectory
+- **Console:** SLAM Toolbox logs showing scan counts and graph optimization
 
-### Parte B — AMCL
-- **Gazebo:** robot en el laberinto conocido
-- **RViz2:** nube de partículas (inicialmente dispersas) converge a la posición real del robot
-- **Console:** logs de AMCL mostrando número efectivo de partículas, likelihood
+### Part B - AMCL
+- **Gazebo:** robot in the known maze
+- **RViz2:** particle cloud, initially spread out, converges to the robot's real position
+- **Console:** AMCL logs showing effective particle count and likelihood
 
 ---
 
@@ -251,19 +251,19 @@ sudo apt-get install ros-humble-slam-toolbox
 sudo apt-get install ros-humble-turtlebot3-gazebo
 ```
 
-### El mapa no se genera o actualiza lentamente
-- Verificar que el lidar está publicando datos en `/scan`
-- Aumentar la velocidad del robot o reducir la velocidad de simulación en Gazebo
-- Ajustar los parámetros de SLAM en `config/`
+### The map is not generated or updates slowly
+- Verify that the lidar is publishing data on `/scan`
+- Increase the robot speed or reduce the simulation speed in Gazebo
+- Adjust the SLAM parameters in `config/`
 
-### Las partículas no convergen en AMCL
-- Aumentar `population_per_meter` en los parámetros de AMCL
-- Verificar que el mapa cargado (`maps/`) coincide con la simulación en Gazebo
-- Asegurar que el lidar está correctamente calibrado (noise, range)
+### The particles do not converge in AMCL
+- Increase `population_per_meter` in the AMCL parameters
+- Verify that the loaded map (`maps/`) matches the Gazebo simulation
+- Make sure the lidar is properly calibrated (noise, range)
 
 ---
 
-## Referencias académicas
+## Academic References
 
 - **SLAM Toolbox:** https://github.com/StanleyInnovation/slam_toolbox
 - **Nav2 AMCL:** https://navigation.ros.org/configuration/packages/nav2_amcl/amcl/index.html
@@ -272,15 +272,15 @@ sudo apt-get install ros-humble-turtlebot3-gazebo
 
 ---
 
-## Autores
+## Authors
 
 - **Mateo Giacometti**
-- **Tiziano Leví Martín Bernal**
+- **Tiziano Levi Martin Bernal**
 
-## Licencia
+## License
 
-Este proyecto se distribuye bajo la **Apache License 2.0**. Véase el archivo `LICENSE` para más detalles.
+This project is distributed under the **Apache License 2.0**. See the `LICENSE` file for details.
 
-## Contacto
+## Contact
 
-Para preguntas o sugerencias, abrir un issue en el repositorio.
+For questions or suggestions, open an issue in the repository.
